@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class AgeCalculator extends JFrame {
     private JPanel mainPanel;
@@ -87,8 +88,8 @@ public class AgeCalculator extends JFrame {
             LocalDate currentDate = LocalDate.now();
             int age = Period.between(birthDate, currentDate).getYears();
             ageLabel.setText("Your age is: " + age);
-            setupResultPanel(); // Update the panel to show the result and options
-        } catch (Exception ex) {
+            setupResultPanel(); // Switch to the result display panel
+        } catch (DateTimeParseException ex) {
             JOptionPane.showMessageDialog(this, "Invalid date format. Use YYYY-MM-DD.", "Error", JOptionPane.ERROR_MESSAGE);
             birthDateField.setText("");
         }
